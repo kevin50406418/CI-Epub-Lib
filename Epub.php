@@ -79,7 +79,7 @@ class Epub
         $meta = new SimpleXMLElement($container);
         $opf = $meta->rootfiles->rootfile['full-path'];
         $this->xpath = (preg_match('/^(.)+\//', $opf, $this->xpath)) ? $this->xpath : array( '0' => '');
-         $opf = $zip->getFromName($opf);
+        $opf = $zip->getFromName($opf);
         $this->xml = new SimpleXMLElement($opf);
         $this->meta = $this->xml->metadata;
         
@@ -94,10 +94,7 @@ class Epub
         $this->get_seriesIndex();
         $this->get_authors();
         $this->get_cover($zip);
-        // $meh = $this->get_cover($zip);
-        //echo '<img src="' . $meh . '"/>';
         $zip->close();
-        //return $this->xml->metadata;
     }
 
     function get_title() 
@@ -173,12 +170,11 @@ class Epub
         $cover = imagecreatefromstring($cover);
         $name = './' . $this->coversDir . '/' . $this->get_title() . '.jpg';
         if ($cover !== false) {
-            //header('Content-Type: image/jpg');
-            $meh = imagejpeg($cover, $name);
+            imagejpeg($cover, $name);
             imagedestroy($cover);
             return htmlentities($this->coversDir . '/' . $this->get_title() . '.jpg');
         } else {
-            return "Ha ocurrido un error al guardar la imágen";
+            return "Ha ocurrido un error al guardar la imagen"; //change by a lang thingy
         }
     }
     private function get_calibreMeta($type)
