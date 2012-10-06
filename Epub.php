@@ -93,8 +93,9 @@ class Epub
         $this->get_series();
         $this->get_seriesIndex();
         $this->get_authors();
-        $meh = $this->get_cover($zip);
-        echo '<img src="' . $meh . '"/>';
+        $this->get_cover($zip);
+        // $meh = $this->get_cover($zip);
+        //echo '<img src="' . $meh . '"/>';
         $zip->close();
         //return $this->xml->metadata;
     }
